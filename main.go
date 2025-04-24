@@ -24,7 +24,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:             "AccountManagement",
+		Title:             "账号管理",
 		Width:             1024,
 		Height:            768,
 		MinWidth:          1024,
@@ -33,21 +33,23 @@ func main() {
 		MaxHeight:         800,
 		DisableResize:     false,
 		Fullscreen:        false,
-		Frameless:         false,
+		Frameless:         false, // 无边框
 		StartHidden:       false,
 		HideWindowOnClose: false,
 		BackgroundColour:  &options.RGBA{R: 255, G: 255, B: 255, A: 255},
-		AssetServer:       &assetserver.Options{
+		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		Menu:              nil,
-		Logger:            nil,
-		LogLevel:          logger.DEBUG,
-		OnStartup:         app.startup,
-		OnDomReady:        app.domReady,
-		OnBeforeClose:     app.beforeClose,
-		OnShutdown:        app.shutdown,
-		WindowStartState:  options.Normal,
+		Menu:             nil,
+		Logger:           nil,
+		LogLevel:         logger.DEBUG,
+		OnStartup:        app.startup,
+		OnDomReady:       app.domReady,
+		OnBeforeClose:    app.beforeClose,
+		OnShutdown:       app.shutdown,
+		WindowStartState: options.Normal,
+		CSSDragProperty:  "widows",
+		CSSDragValue:     "1",
 		Bind: []interface{}{
 			app,
 		},
@@ -58,12 +60,12 @@ func main() {
 			DisableWindowIcon:    false,
 			// DisableFramelessWindowDecorations: false,
 			WebviewUserDataPath: "",
-			ZoomFactor: 1.0,
+			ZoomFactor:          1.0,
 		},
 		// Mac platform specific options
 		Mac: &mac.Options{
 			TitleBar: &mac.TitleBar{
-				TitlebarAppearsTransparent: true,
+				TitlebarAppearsTransparent: true, // 标题栏透明。 这具有隐藏标题栏和内容填充窗口的效果
 				HideTitle:                  false,
 				HideTitleBar:               false,
 				FullSizeContent:            false,
@@ -74,8 +76,8 @@ func main() {
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
-				Title:   "AccountManagement",
-				Message: "",
+				Title:   "账号管理",
+				Message: "© 2025 X",
 				Icon:    icon,
 			},
 		},

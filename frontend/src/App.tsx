@@ -1,16 +1,30 @@
-import { Button } from "@/components/ui/button"
 import React from "react"
+import { Layout } from "@/components/Layout"
+import { PasswordEncrypt } from "@/components/PasswordEncrypt"
+import { PasswordDecrypt } from "@/components/PasswordDecrypt"
+import { AccountManagement } from "@/components/AccountManagement"
 
 function App() {
-  const [count, setCount] = React.useState(0)
+  const [activeMenu, setActiveMenu] = React.useState('password-encrypt')
+
+  // 根据activeMenu渲染对应的组件
+  const renderContent = () => {
+    switch (activeMenu) {
+      case 'password-encrypt':
+        return <PasswordEncrypt />
+      case 'password-decrypt':
+        return <PasswordDecrypt />
+      case 'account-management':
+        return <AccountManagement />
+      default:
+        return <PasswordEncrypt />
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-white grid place-items-center mx-auto py-8">
-      <div className="text-blue-900 text-2xl font-bold flex flex-col items-center space-y-4">
-        <h1>Vite + React + TS + Tailwind + shadcn/ui</h1>
-        <Button onClick={() => setCount(count + 1)}>Count up ({count})</Button>
-      </div>
-    </div>
+    <Layout onMenuChange={setActiveMenu}>
+      {renderContent()}
+    </Layout>
   )
 }
 

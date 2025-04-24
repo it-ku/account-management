@@ -21,12 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path */
-    "rootDir": "src",
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
+  "include": ["src", "wailsjs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
